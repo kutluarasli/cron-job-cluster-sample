@@ -4,6 +4,6 @@ namespace MiniJobScheduler
 {
     public interface ILockReference
     {
-        Task<bool> ClaimAsync();
+        Task<bool> ClaimAsync(string cluster);
     }
 }

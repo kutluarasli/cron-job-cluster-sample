@@ -28,7 +28,7 @@ namespace MiniJobScheduler
             var lockReference = TryAcquireLock(redLockFactory, cancellationTokenSource.Token);
 
             //Start job
-            var myJob = new MyJob(lockReference);
+            var myJob = new MyJob(lockReference, Configuration);
             myJob.RunAsync(cancellationTokenSource.Token);
 
             //Wait for termination
@@ -42,9 +42,7 @@ namespace MiniJobScheduler
 
         private static LockReference TryAcquireLock(RedLockFactory redLockFactory, CancellationToken token)
         {
-            var cluster = Configuration.GetValue<string>("Cluster");
-            
-            var redLockReference = new LockReference(redLockFactory, token, cluster);
+            var redLockReference = new LockReference(redLockFactory, token);
             
             return redLockReference;
         }
