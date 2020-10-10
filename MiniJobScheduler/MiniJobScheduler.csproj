@@ -4,6 +4,17 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.8" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
       <PackageReference Include="RedLock.net" Version="2.2.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="appsettings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 </Project>

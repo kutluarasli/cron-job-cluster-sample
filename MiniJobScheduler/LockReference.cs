@@ -12,23 +12,24 @@ namespace MiniJobScheduler
         private readonly CancellationToken _cancellationToken;
         private IRedLock _redLock;
 
-        public LockReference(RedLockFactory redLockFactory, CancellationToken cancellationToken)
+        public LockReference(RedLockFactory redLockFactory,
+            CancellationToken cancellationToken)
         {
             _redLockFactory = redLockFactory;
             _cancellationToken = cancellationToken;
         }
         
-        public async Task<bool> ClaimAsync()
+        public async Task<bool> ClaimAsync(string cluster)
         {
             if (_redLock == null || !_redLock.IsAcquired)
             {
-                _redLock = await _redLockFactory.CreateLockAsync("my-cluster", 
+                _redLock = await _redLockFactory.CreateLockAsync(cluster, 
                     TimeSpan.FromSeconds(10), 
                     TimeSpan.FromSeconds(1), 
                     TimeSpan.FromSeconds(1), 
                     _cancellationToken);
-                    
             }
+            
             return _redLock.IsAcquired;
         }
 
